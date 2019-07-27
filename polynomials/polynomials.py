@@ -40,6 +40,9 @@ class Polynomial:
     def __sub__(self, other):
         return NotImplemented
 
+    def __call__(self, x):
+        return sum(coefficient * (x ** power) for power, coefficient in self.powers_and_coefficients())
+
 
 a = Polynomial({3: 1, 2: 3, 1: 1, 0: 1})
 print(a)
@@ -51,3 +54,5 @@ print(s)
 
 s[10] = 5
 print(s)
+
+print(s(1))
