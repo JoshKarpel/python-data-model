@@ -11,24 +11,24 @@ class Polynomial:
     def __init__(self, coefficients = None):
         if coefficients is None:
             coefficients = {}
-        self.coefficients = collections.defaultdict(int)
-        self.coefficients.update(coefficients)
+        self.powers_to_coefficients = collections.defaultdict(int)
+        self.powers_to_coefficients.update(coefficients)
 
     def __repr__(self):
-        return f'{self.__class__.__name__}({self.coefficients})'
+        return f'{self.__class__.__name__}({self.powers_to_coefficients})'
 
     def __str__(self):
         parts = (f'{coefficient}x^{power}' for power, coefficient in self.powers_and_coefficients())
         return ' + '.join(parts)
 
     def powers_and_coefficients(self):
-        yield from sorted(self.coefficients.items(), reverse = True)
+        yield from sorted(self.powers_to_coefficients.items(), reverse = True)
 
     def __getitem__(self, key):
-        return self.coefficients[key]
+        return self.powers_to_coefficients[key]
 
     def __setitem__(self, key, value):
-        self.coefficients[key] = value
+        self.powers_to_coefficients[key] = value
 
     def __add__(self, other):
         new = self.__class__()
@@ -43,6 +43,8 @@ class Polynomial:
     def __call__(self, x):
         return sum(coefficient * (x ** power) for power, coefficient in self.powers_and_coefficients())
 
+    def __len__(self):
+        return len(self.powers_to_coefficients)
 
 a = Polynomial({3: 1, 2: 3, 1: 1, 0: 1})
 print(a)
