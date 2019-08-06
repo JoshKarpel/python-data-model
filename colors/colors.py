@@ -4,3 +4,7 @@ START_SEQUENCES = {
     'blue': '\u001b[34m',
 }
 RESET_SEQUENCE = '\u001b[0m'
+
+print(START_SEQUENCES['green'], end = '')
+print('Hello world!', end = '')
+print(RESET_SEQUENCE)
