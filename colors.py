@@ -6,5 +6,6 @@ START_SEQUENCES = {
 RESET_SEQUENCE = '\u001b[0m'
 
 print(START_SEQUENCES['green'], end = '')
-print('Hello world!', end = '')
+print('Hello world, but green!')
 print(RESET_SEQUENCE, end = '')
+print("Not green!")
